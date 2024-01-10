@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTRL</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="loginmodal-container">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">x</span> 
+              </button>
+         </div>  
+         <h6>Request Quotation</h6>  
+         <br> 
+         <form name="requestenquiry" id="requestenquiry" method="post" action="https://formspree.io/f/xyyryozz" method="post">
+            <div class="row">
+               <div class="col-md-6 form-group">
+                <input type="text" name="user" placeholder="Name" id="name">
+                <div class="calert" id="name_error"></div>
+
+               </div> 
+               <div class="col-md-6 form-group">
+               <input type="email" name="email" placeholder="E-mail" id="email">
+               <div class="calert" id="email_error"></div>
+               </div>
+               <div class="clearfix">
+               </div>
+               <div class="col-md-6 form-group">
+                <input type="text" name="mobile" placeholder="Contact Number" id="mobile" onkeypress="return isNumberKey(event);">
+                <div class="calert" id="mobile_error"></div>
+               </div>
+               <div class="col-md-6 form-group">
+                <input type="text" name="organization" placeholder="Organization" id="organization">
+                <div class="calert" id="organization_error"></div>
+               </div>
+               <div class="col-md-12 form-group">
+                <textarea rows="4" cols="50" name="msg" id="message" placeholder="Message/Enquiry"></textarea>
+                <div class="calert" id="message_error"></div>
+               </div>
+                <div class="col-md-12 form-group">
+                <input type="submit" name="enquiry" class="login loginmodal-submit" id="enquiry" value="Send Enquiry">
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                </div>
+                <script type="text/javascript">        
+                    var EMAIL_REGEX 	= /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+                    var isNumberKey = function(evt){
+
+                    var charCode = (evt.which) ? evt.which : evt.keyCode
+
+                    if (charCode > 31 && (charCode < 48 || charCode > 57)){
+
+                        return false;
+
+                    }else{
+
+                        return true;
+
+                    }
+
+                };
+
+                    $("#enquiry").on("click" , function(){
+                        var name          	= $.trim($("#name").val());
+                        var mobile       	= $.trim($("#mobile").val());
+                        var email         	= $.trim($("#email").val());
+                        var organization 	= $.trim($("#organization").val());
+                        var enquiry_lab 	= $.trim($('#enquiry_lab').val());
+                        var message       	= $.trim($("#message").val());
+                        var ran       		= $("#ran").val();
+                        var chk       		= $("#chk").val();
+
+                            //alert(enquiry_lab);
+                            
+                            if(name == '' || name == null)
+                            {
+                                error = "Enter Your Name";						
+                                document.getElementById("name_error").innerHTML = error; 
+                                return false;
+
+                            }
+			
+                            if(email == '' || email == null)
+                                {
+                                    error = "Enter your Email address";				
+                                    document.getElementById("email_error").innerHTML = error; 
+                                    return false;
+
+                                }else if(!EMAIL_REGEX.test(email)){
+
+                                    error = "Invalid email address";
+                                    document.getElementById("email_error").innerHTML = error; 
+                                    return false;
+
+                                                }
+                            if(mobile == '' || mobile == null)
+                            {
+                                error = "Enter Contact Number";	
+                                document.getElementById("mobile_error").innerHTML = error; 			   
+                                return false;
+
+                            }
+                            if(organization == '' || organization == null)
+                                {
+                                    error = "Enter Your organization";	
+                                    document.getElementById("organization_error").innerHTML = error; 
+                                    return false;
+
+                                }
+                                if(enquiry_lab == '0'){
+                                    error = "Select lab to send enquiry.";	
+                                    document.getElementById("enquiry_lab_error").innerHTML = error; 
+                                    return false;
+                                }
+						
+
+                                if(message == '' || message == null)
+                                {
+                                    error = "Enter Some text ";	
+                                    document.getElementById("message_error").innerHTML = error; 
+                                    return false;
+
+                                }
+                                
+                                <!-- if(chk == '')
+                                {
+                                    error = "Enter Captcha";	
+                                    document.getElementById("chk_error").innerHTML = error; 
+                                    return false;
+
+                                }
+                            if(chk != ran)
+                                {
+                                    error = "Invalid Captcha";	
+                                    document.getElementById("chk_error").innerHTML = error; 
+                                    return false;
+                                }  -->
+
+
+                        })
+	
+                            function removeWarning() {
+                                    document.getElementById(this.id + "_error").innerHTML = "";
+                                }
+
+
+                        document.getElementById("name").onkeyup = removeWarning;
+                        document.getElementById("email").onkeyup = removeWarning;
+                        document.getElementById("mobile").onkeyup = removeWarning;
+                        document.getElementById("organization").onkeyup = removeWarning;
+                        document.getElementById("enquiry_lab").onchange = removeWarning;
+                        document.getElementById("message").onkeyup = removeWarning;
+                        //document.getElementById("chk").onkeyup = removeWarning;
+
+
+
+                </script>
+                <script type="text/javascript">
+                        $('.noti-bar-link').bind('click', function(event){
+                            var anchor = $(this).attr('href');
+                            smoothScrollTo(anchor);
+                            return false;
+                        });
+                </script>
+                <script>
+                 $(document).ready(function () {
+
+
+                $('#memberModal').load('@Url.Action("Add")', function () {
+                              $('#memberModal').modal('show');
+                    });
+			
+			
+                // $('#memberModal').modal('show');
+
+                });
+                </script>
+                <script>
+                    'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpbh-mt'},{'server':'sg2plmcpnl503937'},{'dcenter':'sg2'},{'cp_id':'2416462'},{'cp_cache':''},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.
+                </script>
+            </div>
+         </form>
+</body>
+</html>
